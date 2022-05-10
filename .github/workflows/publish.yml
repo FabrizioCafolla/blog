@@ -3,6 +3,8 @@ name: Publish posts
 on:
   push:
     branches: [main]
+    paths:
+      - "posts/*"
   workflow_dispatch:
 
 jobs:

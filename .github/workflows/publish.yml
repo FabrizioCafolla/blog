@@ -1,0 +1,23 @@
+name: Publish posts
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Publish blog
+    runs-on: ubuntu-20.04   
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Deploy
+        uses: protiumx/blogpub@v0.4.1
+        with:
+          articles_folder: posts/*
+          devto_api_key: ${{ secrets.DEVTO_TOKEN }}
+          gh_token: ${{ secrets.GITHUB_TOKEN }}
+          medium_token: ${{ secrets.MEDIUM_TOKEN }}
+          medium_user_id: ${{ secrets.MEDIUM_ID }}
